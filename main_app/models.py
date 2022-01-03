@@ -1,8 +1,9 @@
 from django.db import models
+from django.urls import reverse
 from django.contrib.auth.models import User
 
 class Recipe(models.Model):
-  user = models.ForeignKey(User, on_delete=models.CASCADE)
+  users = models.ManyToManyField(User)
   strMeal = models.CharField(max_length=255)
   strCategory = models.CharField(max_length=255, blank=True, null=True)
   strArea= models.CharField(max_length=255, blank=True, null=True)
@@ -51,6 +52,9 @@ class Recipe(models.Model):
  
   def __str__(self):
     return self.strMeal
+  
+  def get_absolute_url(self):
+    return reverse('recipes_detail', kwargs={'recipe_name': self.strMeal})
   
 class Profile(models.Model):
   user = models.OneToOneField(User, on_delete=models.CASCADE)

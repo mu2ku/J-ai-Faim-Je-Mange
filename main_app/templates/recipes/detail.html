@@ -19,7 +19,10 @@
     src="{{ recipe.strMealThumb }}" 
     alt="recipe image"
     ></br>
+    <form action="{% url 'assoc_user' recipe.strMeal user.id %}" method="post">
+      {% csrf_token %}
     <button class="button is-info">Add</button>
+    </form>
     <button class="button is-danger">Delete</button>
     <h1>{{recipe.strMeal}}</h1>
     <p>{{ recipe.strInstructions }}</p>
@@ -55,7 +58,10 @@
     src="{{ dbrecipe.strThumb }}" 
     alt="recipe image"
     ></br>
+    <form action="{% url 'assoc_user' dbrecipe.strMeal user.id %}" method="post">
+      {% csrf_token %}
     <button class="button is-info">Add</button>
+    </form>
     <button class="button is-danger">Delete</button>
     <h1>{{dbrecipe.strMeal}}</h1>
     <p>{{ dbrecipe.strInstructions }}</p>

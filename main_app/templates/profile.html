@@ -1,7 +1,31 @@
 {% extends 'base.html' %}
+{% load static %}
+
+{% block head %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/profile.css' %}"/>
+{% endblock %}
 
 {% block content %}
 
 <h1>Working</h1>
+
+<section class="card-container">
+  {% for recipe in recipes %}
+    <div class="card">
+      <a href="/recipes/details/{{ recipe.strMeal }}">
+        <div class="card-content">
+          <div class="card-img-container">
+            <img
+              style="width:200px;height:200px;"
+              src="{{ recipe.strThumb }}" 
+              alt="recipe image"
+            >
+          </div>
+          <h2 class="card-title">{{ recipe.strMeal }}</h2>
+        </div>
+      </a>
+    </div>
+  {% endfor %}
+  </section>
 
 {% endblock %}
