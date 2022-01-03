@@ -57,6 +57,25 @@
       <button class="button is-danger">Delete</button>
     </div>
   {% endfor %}
+
+  {% for dbrecipe in dbrecipes %}
+    <div class="card">
+      <a href="/recipes/{{ dbrecipe.strMeal }}">
+        <div class="card-content">
+          <div class="card-img-container">
+            <img
+              style="width:200px;height:200px;"
+              src="{{ dbrecipe.strThumb }}" 
+              alt="recipe image"
+            >
+          </div>
+          <h2 class="card-title">{{ dbrecipe.strMeal }}</h2>
+        </div>
+      </a>
+      <button class="button is-info">Add</button>
+      <button class="button is-danger">Delete</button>
+    </div>
+  {% endfor %}
 </section>
 
 {% endblock %}
