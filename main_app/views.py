@@ -8,6 +8,9 @@ import requests
 
 class Home(LoginView):
   template_name = 'home.html'
+  
+def profile(request):
+  return render(request, 'profile.html')
 
 def recipes_index(request):
   response = requests.get('http://www.themealdb.com/api/json/v1/1/search.php?f=a')
@@ -33,20 +36,16 @@ def recipes_index_letter(request, letter):
 def recipes_detail(request, recipe_name):
   try:
     res = requests.get(f"http://www.themealdb.com/api/json/v1/1/search.php?s={recipe_name}")
-    
-    if(res is None):
-      dbrecipe = Recipe.objects.filter(strMeal=recipe_name)
-      return render(request, 'recipes/detail.html', {
-          'dbrecipe': dbrecipe,
-    })
-    else:
-      recipe = res.json()
-      return render(request, 'recipes/detail.html', {
-        'recipe': recipe['meals'][0],
+    recipe = res.json()
+    return render(request, 'recipes/detail.html', {
+      'recipe': recipe['meals'][0],
     })
       
-  except Exception as e:
-    print(e)
+  except:
+    dbrecipe = Recipe.objects.get(strMeal=recipe_name)
+    return render(request, 'recipes/detail.html', {
+          'dbrecipe': dbrecipe,
+    })
     
 class RecipeCreate(CreateView):
   model = Recipe
