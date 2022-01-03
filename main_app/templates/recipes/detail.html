@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block head %}
+<link 
+  rel="stylesheet" 
+  type="text/css" 
+  href="{% static 'css/recipe-detail.css' %}"
+/>
+{% endblock %}
+
+{% block content %}
+
+<section class="recipe-container">
+  <div class="recipe-details">
+    <img
+    style="height:300px;width:300px;"
+    src="{{ recipe.strMealThumb }}" 
+    alt="recipe image"
+    ></br>
+    <button class="button is-info">Add</button>
+    <button class="button is-danger">Delete</button>
+    <h1>{{recipe.strMeal}}</h1>
+    <p>{{ recipe.strInstructions }}</p>
+    <ul>
+      <li>{{ recipe.strIngredient1 }} || {{ recipe.strMeasure1 }}</li>
+      <li>{{ recipe.strIngredient2 }} || {{ recipe.strMeasure2 }}</li>
+      <li>{{ recipe.strIngredient3 }} || {{ recipe.strMeasure3 }}</li>
+      <li>{{ recipe.strIngredient4 }} || {{ recipe.strMeasure4 }}</li>
+      <li>{{ recipe.strIngredient5 }} || {{ recipe.strMeasure5 }}</li>
+      <li>{{ recipe.strIngredient6 }} || {{ recipe.strMeasure6 }}</li>
+      <li>{{ recipe.strIngredient7 }} || {{ recipe.strMeasure7 }}</li>
+      <li>{{ recipe.strIngredient8 }} || {{ recipe.strMeasure8 }}</li>
+      <li>{{ recipe.strIngredient9 }} || {{ recipe.strMeasure9 }}</li>
+      <li>{{ recipe.strIngredient10 }} || {{ recipe.strMeasure10 }}</li>
+      <li>{{ recipe.strIngredient11 }} || {{ recipe.strMeasure11 }}</li>
+      <li>{{ recipe.strIngredient12 }} || {{ recipe.strMeasure12 }}</li>
+      <li>{{ recipe.strIngredient13 }} || {{ recipe.strMeasure13 }}</li>
+      <li>{{ recipe.strIngredient14 }} || {{ recipe.strMeasure14 }}</li>
+      <li>{{ recipe.strIngredient15 }} || {{ recipe.strMeasure15 }}</li>
+      <li>{{ recipe.strIngredient16 }} || {{ recipe.strMeasure16 }}</li>
+      <li>{{ recipe.strIngredient17 }} || {{ recipe.strMeasure17 }}</li>
+      <li>{{ recipe.strIngredient18 }} || {{ recipe.strMeasure18 }}</li>
+      <li>{{ recipe.strIngredient19 }} || {{ recipe.strMeasure19 }}</li>
+      <li>{{ recipe.strIngredient20 }} || {{ recipe.strMeasure20 }}</li>
+    </ul>
+  </div>
+</section>
+
+{% endblock %}

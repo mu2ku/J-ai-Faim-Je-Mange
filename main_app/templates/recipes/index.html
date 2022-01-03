@@ -41,16 +41,20 @@
 <section class="card-container">
   {% for recipe in recipes %}
     <div class="card">
-      <div class="card-content">
-        <div class="card-img-container">
-          <img
-            style="width:200px;height:200px;"
-            src="{{ recipe.strMealThumb }}" 
-            alt=""
-          >
+      <a href="/recipes/{{ recipe.strMeal }}">
+        <div class="card-content">
+          <div class="card-img-container">
+            <img
+              style="width:200px;height:200px;"
+              src="{{ recipe.strMealThumb }}" 
+              alt="recipe image"
+            >
+          </div>
+          <h2 class="card-title">{{ recipe.strMeal }}</h2>
         </div>
-        <h2 class="card-title">{{ recipe.strMeal }}</h2>
-      </div>
+      </a>
+      <button class="button is-info">Add</button>
+      <button class="button is-danger">Delete</button>
     </div>
   {% endfor %}
 </section>

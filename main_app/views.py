@@ -193,3 +193,9 @@ def recipes_index_z(request):
       'recipes': recipes['meals'],
   })
   
+def recipes_detail(request, recipe_name):
+  response = requests.get(f"http://www.themealdb.com/api/json/v1/1/search.php?s={recipe_name}")
+  recipe = response.json()
+  return render(request, 'recipes/detail.html', {
+      'recipe': recipe['meals'][0],
+  })
