@@ -41,7 +41,7 @@
 <section class="card-container">
   {% for recipe in recipes %}
     <div class="card">
-      <a href="/recipes/{{ recipe.strMeal }}">
+      <a href="/recipes/details/{{ recipe.strMeal }}">
         <div class="card-content">
           <div class="card-img-container">
             <img
@@ -60,7 +60,7 @@
 
   {% for dbrecipe in dbrecipes %}
     <div class="card">
-      <a href="/recipes/{{ dbrecipe.strMeal }}">
+      <a href="/recipes/details/{{ dbrecipe.strMeal }}">
         <div class="card-content">
           <div class="card-img-container">
             <img
