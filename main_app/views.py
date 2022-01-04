@@ -72,5 +72,17 @@ def signup(request):
   return render(request, 'signup.html', context)
 
 def assoc_user(request, recipe_name, user_id):
-  Recipe.objects.get(strMeal=recipe_name).users.add(user_id)
-  return redirect(f'/recipes/details/{recipe_name}/')
+  # try:
+  #   Recipe.objects.get(strMeal=recipe_name).users.add(user_id)
+  #   return redirect(f'/recipes/details/{recipe_name}/')
+  # except:
+    res = requests.get(f"http://www.themealdb.com/api/json/v1/1/search.php?s={recipe_name}")
+    data = res.json()
+    recipe = data['meals'][0]
+    for key in recipe:
+      if(recipe[key] is None):
+        recipe[key]= ""
+    r = Recipe(strMeal=recipe['strMeal'], strCategory=recipe['strCategory'], strArea=recipe['strArea'], strInstructions=recipe['strInstructions'], strThumb=recipe['strMealThumb'], strIngredient1=recipe['strMeasure1']+" "+recipe['strIngredient1'], strIngredient2=recipe['strMeasure2']+" "+recipe['strIngredient2'], strIngredient3=recipe['strMeasure3']+" "+recipe['strIngredient3'], strIngredient4=recipe['strMeasure4']+" "+recipe['strIngredient4'], strIngredient5=recipe['strMeasure5']+" "+recipe['strIngredient5'], strIngredient6=recipe['strMeasure6']+" "+recipe['strIngredient6'], strIngredient7=recipe['strMeasure7']+" "+recipe['strIngredient7'], strIngredient8=recipe['strMeasure8']+" "+recipe['strIngredient8'], strIngredient9=recipe['strMeasure9']+" "+recipe['strIngredient9'], strIngredient10=recipe['strMeasure10']+" "+recipe['strIngredient10'], strIngredient11=recipe['strMeasure11']+" "+recipe['strIngredient11'], strIngredient12=recipe['strMeasure12']+" "+recipe['strIngredient12'], strIngredient13=recipe['strMeasure13']+" "+recipe['strIngredient13'], strIngredient14=recipe['strMeasure14']+" "+recipe['strIngredient14'], strIngredient15=recipe['strMeasure15']+" "+recipe['strIngredient15'], strIngredient16=recipe['strMeasure16']+" "+recipe['strIngredient16'], strIngredient17=recipe['strMeasure17']+" "+recipe['strIngredient17'], strIngredient18=recipe['strMeasure18']+" "+recipe['strIngredient18'], strIngredient19=recipe['strMeasure19']+" "+recipe['strIngredient19'], strIngredient20=recipe['strMeasure20']+" "+recipe['strIngredient20'] )
+    r.save()
+    Recipe.objects.get(strMeal=recipe_name).users.add(user_id)
+    return redirect(f'/recipes/details/{recipe_name}/')
