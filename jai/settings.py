@@ -8,7 +8,12 @@ https://docs.djangoproject.com/en/3.2/topics/settings/
 
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.2/ref/settings/
+
 """
+
+import environ
+env = environ.Env()
+environ.Env.read_env()
 
 from pathlib import Path
 
@@ -19,11 +24,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-o92cv4j#vbx92ll)#bwc0c$=*%ec766r3+37n+5b=j88gu!(k^'
-
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
+
+DEBUG_PROPAGATE_EXCEPTIONS = True
 
 ALLOWED_HOSTS = []
 
@@ -128,3 +132,7 @@ LOGOUT_REDIRECT_URL = 'home'
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# Configure Django App for Heroku.
+import django_heroku
+django_heroku.settings(locals())
