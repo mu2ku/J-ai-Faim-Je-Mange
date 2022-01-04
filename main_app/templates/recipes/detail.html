@@ -21,9 +21,12 @@
     ></br>
     <form action="{% url 'assoc_user' recipe.strMeal user.id %}" method="post">
       {% csrf_token %}
-    <button class="button is-info">Add</button>
+      <button class="button is-info">Add</button>
     </form>
-    <button class="button is-danger">Delete</button>
+    <form action="{% url 'remove_user' recipe.strMeal user.id %}" method="post">
+      {% csrf_token %}
+      <button class="button is-danger">Delete</button>
+    </form>
     <h1>{{recipe.strMeal}}</h1>
     <p>{{ recipe.strInstructions }}</p>
     <ul>

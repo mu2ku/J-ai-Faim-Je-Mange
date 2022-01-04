@@ -72,10 +72,10 @@ def signup(request):
   return render(request, 'signup.html', context)
 
 def assoc_user(request, recipe_name, user_id):
-  # try:
-  #   Recipe.objects.get(strMeal=recipe_name).users.add(user_id)
-  #   return redirect(f'/recipes/details/{recipe_name}/')
-  # except:
+  try:
+    Recipe.objects.get(strMeal=recipe_name).users.add(user_id)
+    return redirect(f'/recipes/details/{recipe_name}/')
+  except:
     res = requests.get(f"http://www.themealdb.com/api/json/v1/1/search.php?s={recipe_name}")
     data = res.json()
     recipe = data['meals'][0]
@@ -86,3 +86,7 @@ def assoc_user(request, recipe_name, user_id):
     r.save()
     Recipe.objects.get(strMeal=recipe_name).users.add(user_id)
     return redirect(f'/recipes/details/{recipe_name}/')
+  
+def remove_user(request, recipe_name, user_id):
+  Recipe.objects.get(strMeal=recipe_name).users.remove(user_id)
+  return redirect(f'/recipes/details/{recipe_name}/')
