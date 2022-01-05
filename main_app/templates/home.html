@@ -7,18 +7,47 @@
 
 {% block content %}
 
-<h1>Work in Progress</h1>
+<div class="home">
+  <div class="home_loggedin">
+    {% if user.is_authenticated %}
+    <div class="images images_loggedin">
+      <img src="https://expertphotography.b-cdn.net/wp-content/uploads/2019/01/food-photography-blogs-spread.jpg" alt="">
+      <img src="https://miro.medium.com/max/1400/0*1hYxa6Rc0OBIfBGJ.jpg" alt="">
+      <img src="https://img5.goodfon.com/wallpaper/nbig/a/36/pirozhnye-muss-iagody-assorti.jpg" alt="">
+    </div>
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Venenatis a condimentum vitae sapien pellentesque. Mattis enim ut tellus elementum sagittis. Ut tellus elementum sagittis vitae et leo duis ut. Porta non pulvinar neque laoreet suspendisse interdum consectetur libero id. At volutpat diam ut venenatis tellus in. Magna fermentum iaculis eu non diam. Sed cras ornare arcu dui vivamus arcu felis. Arcu ac tortor dignissim convallis aenean et tortor at risus. Quam quisque id diam vel quam elementum pulvinar etiam non.</p>
+    <p>Sit amet risus nullam eget felis eget nunc. Posuere ac ut consequat semper. Volutpat consequat mauris nunc congue nisi vitae suscipit tellus. A lacus vestibulum sed arcu non odio euismod. Leo vel fringilla est ullamcorper eget nulla facilisi. Pharetra diam sit amet nisl. A arcu cursus vitae congue mauris rhoncus aenean vel. Tristique senectus et netus et malesuada fames. Vitae elementum curabitur vitae nunc sed velit. Etiam sit amet nisl purus in mollis nunc. Nec nam aliquam sem et. Facilisis gravida neque convallis a cras semper.</p>
+    {% endif %}
+  </div>
 
 {% if not user.is_authenticated %}
-<section>
-  <form action="{% url 'home' %}" method="post" class="login">
-    <h1>Login</h1>
-    {% csrf_token %}
-    {{ form.as_p }}
-    <input type="hidden" name="next" value="{{ next }}">
-    <button type="submit" class="btn submit">Login</button>
-  </form>
-</section>
+  <div class="home_loggedout">
+    <div class="images images_loggedout">
+      <img src="https://i.pinimg.com/originals/fe/c2/e0/fec2e084719c90aac1914ea124d074b1.jpg" alt="">
+      <img src="https://twolovesstudio.com/wp-content/uploads/2017/05/99-Best-Food-Photography-Tips-1152.jpg" alt="">
+      <img src="https://www.stylesalute.com/wp-content/uploads/2020/07/Food-photography-tips.png" alt="">
+      <img src="https://julestrails.com/wp-content/uploads/2020/12/Berry-cheesecake-6551-LowRes.jpg" alt="">
+    </div>
+      <div class="login-form">
+        <section>
+          <form action="{% url 'home' %}" method="post" class="login">
+            <h1>Login:</h1>
+            {% csrf_token %}
+            {{ form.as_p }}
+            <input type="hidden" name="next" value="{{ next }}">
+            <button type="submit" class="btn submit button is-link">Login</button>
+          </form>
+        </section>
+      </div>
+  </div>
+</div>
 {% endif %}
+<footer>
+  <div class="content has-text-centered">
+    <p>
+      J'ai Faim, Je Manage &copy; 2022
+    </p>
+  </div>
+</footer>
 
 {% endblock %}

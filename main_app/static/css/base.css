@@ -1,3 +1,8 @@
+html, body {
+  margin: 0;
+  height: 100%;
+}
+
 span {
   text-align: center;
   font-size: 100px;
@@ -45,4 +50,18 @@ nav ul {
 
 nav li {
   padding: 0 25px;
+}
+
+footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-color: #CC958F;
+  text-align: center;
+  height: 35px;
+}
+
+.header-logo-container {
+  margin: 10px;
 }

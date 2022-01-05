@@ -1,0 +1,59 @@
+.home {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.home_loggedin {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.images {
+  display: flex;
+  flex-direction: row;
+}
+
+.images_loggedin > * {
+  width: 600px;
+  height: 400px;
+  padding: 0 15px;
+}
+
+.images_loggedout {
+  width: 39.5em;
+  height: 39.5em;
+  position:relative;
+  right: 387px;
+}
+
+.images_loggedout > * {
+  margin: 8px;
+}
+
+.home_loggedout {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.home_loggedin > * {
+  padding: 10px;
+}
+
+p {
+  margin: 10px;
+}
+
+.login-form {
+  font-size: 2em;
+  background-color: white;
+  padding: 50px;
+  position: relative;
+  right: 300px;
+  text-align:center;
+  border: 3px dashed #CC958F;
+}
