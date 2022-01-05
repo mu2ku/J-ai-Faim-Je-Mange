@@ -12,46 +12,49 @@
   <div class="recipe-details">
     <div class="recipe-header">
       <img
-      style="height:300px;width:300px;"
+      style="height:500px;width:500px;"
       src="{{ recipe.strMealThumb }}" 
       alt="recipe image"
       >
-      <span>{{recipe.strMeal}}<span>
-    </div>
-      {% if recipe.users %}
-        <form action="{% url 'remove_user' recipe.strMeal user.id %}" method="post">
-          {% csrf_token %}
-          <button class="button is-danger">Delete</button>
-        </form>
-      {% else %}
+      <div class="title-and-btn">
+        <span class="recipe-name">{{recipe.strMeal}}</span>
         <form action="{% url 'assoc_user' recipe.strMeal user.id %}" method="post">
           {% csrf_token %}
-        <button class="button is-info">Add</button>
+          <button class="button is-link is-light is-outlined is-fullwidth">Add to Collection</button>
         </form>
-      {% endif %}
-    <p>{{ recipe.strInstructions }}</p>
-    <ul>
-      <li>{{ recipe.strMeasure1 }} {{ recipe.strIngredient1 }}</li>
-      <li>{{ recipe.strMeasure2 }} {{ recipe.strIngredient2 }}</li>
-      <li>{{ recipe.strMeasure3 }} {{ recipe.strIngredient3 }}</li>
-      <li>{{ recipe.strMeasure4 }} {{ recipe.strIngredient4 }}</li>
-      <li>{{ recipe.strMeasure5 }} {{ recipe.strIngredient5 }}</li>
-      <li>{{ recipe.strMeasure6 }} {{ recipe.strIngredient6 }}</li>
-      <li>{{ recipe.strMeasure7 }} {{ recipe.strIngredient7 }}</li>
-      <li>{{ recipe.strMeasure8 }} {{ recipe.strIngredient8 }}</li>
-      <li>{{ recipe.strMeasure9 }} {{ recipe.strIngredient9 }}</li>
-      <li>{{ recipe.strMeasure10 }} {{ recipe.strIngredient10 }}</li>
-      <li>{{ recipe.strMeasure11 }} {{ recipe.strIngredient11 }}</li>
-      <li>{{ recipe.strMeasure12 }} {{ recipe.strIngredient12 }}</li>
-      <li>{{ recipe.strMeasure13 }} {{ recipe.strIngredient13 }}</li>
-      <li>{{ recipe.strMeasure14 }} {{ recipe.strIngredient14 }}</li>
-      <li>{{ recipe.strMeasure15 }} {{ recipe.strIngredient15 }}</li>
-      <li>{{ recipe.strMeasure16 }} {{ recipe.strIngredient16 }}</li>
-      <li>{{ recipe.strMeasure17 }} {{ recipe.strIngredient17 }}</li>
-      <li>{{ recipe.strMeasure18 }} {{ recipe.strIngredient18 }}</li>
-      <li>{{ recipe.strMeasure19 }} {{ recipe.strIngredient19 }}</li>
-      <li>{{ recipe.strMeasure20 }} {{ recipe.strIngredient20 }}</li> 
-    </ul>
+        <form action="{% url 'remove_user' recipe.strMeal user.id %}" method="post">
+          {% csrf_token %}
+          <button class="button is-danger is-light is-outlined is-fullwidth">Remove from Collection</button>
+        </form>
+      </div>
+    </div>
+    <div class="instructions">
+      <span class="recipe-title">Recipe</span>
+      <p>{{ recipe.strInstructions }}</p>
+      <span>Ingredients and Measurements</span>
+      <ul>
+        <li><strong>{{ recipe.strMeasure1 }}</strong> {{ recipe.strIngredient1 }}</li>
+        <li><strong>{{ recipe.strMeasure2 }}</strong> {{ recipe.strIngredient2 }}</li>
+        <li><strong>{{ recipe.strMeasure3 }}</strong> {{ recipe.strIngredient3 }}</li>
+        <li><strong>{{ recipe.strMeasure4 }}</strong> {{ recipe.strIngredient4 }}</li>
+        <li><strong>{{ recipe.strMeasure5 }}</strong> {{ recipe.strIngredient5 }}</li>
+        <li><strong>{{ recipe.strMeasure6 }}</strong> {{ recipe.strIngredient6 }}</li>
+        <li><strong>{{ recipe.strMeasure7 }}</strong> {{ recipe.strIngredient7 }}</li>
+        <li><strong>{{ recipe.strMeasure8 }}</strong> {{ recipe.strIngredient8 }}</li>
+        <li><strong>{{ recipe.strMeasure9 }}</strong> {{ recipe.strIngredient9 }}</li>
+        <li><strong>{{ recipe.strMeasure10 }}</strong> {{ recipe.strIngredient10 }}</li>
+        <li><strong>{{ recipe.strMeasure11 }}</strong> {{ recipe.strIngredient11 }}</li>
+        <li><strong>{{ recipe.strMeasure12 }}</strong> {{ recipe.strIngredient12 }}</li>
+        <li><strong>{{ recipe.strMeasure13 }}</strong> {{ recipe.strIngredient13 }}</li>
+        <li><strong>{{ recipe.strMeasure14 }}</strong> {{ recipe.strIngredient14 }}</li>
+        <li><strong>{{ recipe.strMeasure15 }}</strong> {{ recipe.strIngredient15 }}</li>
+        <li><strong>{{ recipe.strMeasure16 }}</strong> {{ recipe.strIngredient16 }}</li>
+        <li><strong>{{ recipe.strMeasure17 }}</strong> {{ recipe.strIngredient17 }}</li>
+        <li><strong>{{ recipe.strMeasure18 }}</strong> {{ recipe.strIngredient18 }}</li>
+        <li><strong>{{ recipe.strMeasure19 }}</strong> {{ recipe.strIngredient19 }}</li>
+        <li><strong>{{ recipe.strMeasure20 }}</strong> {{ recipe.strIngredient20 }}</li> 
+      </ul>
+    </div>
   </div>
 </section>
 {% else %}
@@ -59,51 +62,53 @@
   <div class="recipe-details">
     <div class="recipe-header">
       <img
-      style="height:300px;width:300px;"
+      style="height:500px;width:500px;"
       src="{{ dbrecipe.strThumb }}" 
       alt="recipe image"
       >
-      <h1>{{dbrecipe.strMeal}}</h1>
+      <div class="title-and-btn">
+        <span class="recipe-name">{{dbrecipe.strMeal}}</span>
+        {% for entry in dbrecipe.users.all %}
+          <form action="{% url 'assoc_user' dbrecipe.strMeal user.id %}" method="post">
+            {% csrf_token %}
+          <button class="button is-link is-light is-outlined is-fullwidth">Add to Collection</button>
+          </form>
+          <form action="{% url 'remove_user' dbrecipe.strMeal user.id %}" method="post">
+            {% csrf_token %}
+            <button class="button is-danger is-light is-outlined is-fullwidth">Remove from Collection</button>
+          </form>
+        {% endfor %}
+      </div>
     </div>
-    {% for entry in dbrecipe.users.all %}
-      {% if entry == user %}
-        <form action="{% url 'remove_user' dbrecipe.strMeal user.id %}" method="post">
-          {% csrf_token %}
-          <button class="button is-danger">Delete</button>
-        </form>
-      {% else %}
-        <form action="{% url 'assoc_user' dbrecipe.strMeal user.id %}" method="post">
-          {% csrf_token %}
-        <button class="button is-info">Add</button>
-        </form>
-      {% endif %}
-    {% endfor %}
-    <p>{{ dbrecipe.strInstructions }}</p>
-    <ul>
-      <li>{{ dbrecipe.strMeasure1 }} {{ dbrecipe.strIngredient1 }}</li>
-      <li>{{ dbrecipe.strMeasure2 }} {{ dbrecipe.strIngredient2 }}</li>
-      <li>{{ dbrecipe.strMeasure3 }} {{ dbrecipe.strIngredient3 }}</li>
-      <li>{{ dbrecipe.strMeasure4 }} {{ dbrecipe.strIngredient4 }}</li>
-      <li>{{ dbrecipe.strMeasure5 }} {{ dbrecipe.strIngredient5 }}</li>
-      <li>{{ dbrecipe.strMeasure6 }} {{ dbrecipe.strIngredient6 }}</li>
-      <li>{{ dbrecipe.strMeasure7 }} {{ dbrecipe.strIngredient7 }}</li>
-      <li>{{ dbrecipe.strMeasure8 }} {{ dbrecipe.strIngredient8 }}</li>
-      <li>{{ dbrecipe.strMeasure9 }} {{ dbrecipe.strIngredient9 }}</li>
-      <li>{{ dbrecipe.strMeasure10 }} {{ dbrecipe.strIngredient10 }}</li>
-      <li>{{ dbrecipe.strMeasure11 }} {{ dbrecipe.strIngredient11 }}</li>
-      <li>{{ dbrecipe.strMeasure12 }} {{ dbrecipe.strIngredient12 }}</li>
-      <li>{{ dbrecipe.strMeasure13 }} {{ dbrecipe.strIngredient13 }}</li>
-      <li>{{ dbrecipe.strMeasure14 }} {{ dbrecipe.strIngredient14 }}</li>
-      <li>{{ dbrecipe.strMeasure15 }} {{ dbrecipe.strIngredient15 }}</li>
-      <li>{{ dbrecipe.strMeasure16 }} {{ dbrecipe.strIngredient16 }}</li>
-      <li>{{ dbrecipe.strMeasure17 }} {{ dbrecipe.strIngredient17 }}</li>
-      <li>{{ dbrecipe.strMeasure18 }} {{ dbrecipe.strIngredient18 }}</li>
-      <li>{{ dbrecipe.strMeasure19 }} {{ dbrecipe.strIngredient19 }}</li>
-      <li>{{ dbrecipe.strMeasure20 }} {{ dbrecipe.strIngredient20 }}</li> 
-    </ul>
+    <div class="instructions">
+      <span class="recipe-title">Recipe</span>
+      <p>{{ dbrecipe.strInstructions }}</p>
+      <span>Ingredients and Measurements</span>
+      <ul>
+        <li><strong>{{ dbrecipe.strMeasure1 }}</strong> {{ dbrecipe.strIngredient1 }}</li>
+        <li><strong>{{ dbrecipe.strMeasure2 }}</strong> {{ dbrecipe.strIngredient2 }}</li>
+        <li><strong>{{ dbrecipe.strMeasure3 }}</strong> {{ dbrecipe.strIngredient3 }}</li>
+        <li><strong>{{ dbrecipe.strMeasure4 }}</strong> {{ dbrecipe.strIngredient4 }}</li>
+        <li><strong>{{ dbrecipe.strMeasure5 }}</strong> {{ dbrecipe.strIngredient5 }}</li>
+        <li><strong>{{ dbrecipe.strMeasure6 }}</strong> {{ dbrecipe.strIngredient6 }}</li>
+        <li><strong>{{ dbrecipe.strMeasure7 }}</strong> {{ dbrecipe.strIngredient7 }}</li>
+        <li><strong>{{ dbrecipe.strMeasure8 }}</strong> {{ dbrecipe.strIngredient8 }}</li>
+        <li><strong>{{ dbrecipe.strMeasure9 }}</strong> {{ dbrecipe.strIngredient9 }}</li>
+        <li><strong>{{ dbrecipe.strMeasure10 }}</strong> {{ dbrecipe.strIngredient10 }}</li>
+        <li><strong>{{ dbrecipe.strMeasure11 }}</strong> {{ dbrecipe.strIngredient11 }}</li>
+        <li><strong>{{ dbrecipe.strMeasure12 }}</strong> {{ dbrecipe.strIngredient12 }}</li>
+        <li><strong>{{ dbrecipe.strMeasure13 }}</strong> {{ dbrecipe.strIngredient13 }}</li>
+        <li><strong>{{ dbrecipe.strMeasure14 }}</strong> {{ dbrecipe.strIngredient14 }}</li>
+        <li><strong>{{ dbrecipe.strMeasure15 }}</strong> {{ dbrecipe.strIngredient15 }}</li>
+        <li><strong>{{ dbrecipe.strMeasure16 }}</strong> {{ dbrecipe.strIngredient16 }}</li>
+        <li><strong>{{ dbrecipe.strMeasure17 }}</strong> {{ dbrecipe.strIngredient17 }}</li>
+        <li><strong>{{ dbrecipe.strMeasure18 }}</strong> {{ dbrecipe.strIngredient18 }}</li>
+        <li><strong>{{ dbrecipe.strMeasure19 }}</strong> {{ dbrecipe.strIngredient19 }}</li>
+        <li><strong>{{ dbrecipe.strMeasure20 }}</strong> {{ dbrecipe.strIngredient20 }}</li> 
+      </ul>
+    </div>
   </div>
 </section>
 {% endif %}
-
 
 {% endblock %}

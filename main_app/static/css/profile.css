@@ -40,3 +40,9 @@ section {
   margin: 5px 0;
   font-size: var(--font-reg);
 }
+
+.profile-title {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

@@ -3,3 +3,28 @@
   align-items: center;
   justify-content: space-evenly;
 }
+
+.recipe-name {
+  font-size: 120px;
+}
+
+.title-and-btn > * {
+  padding: 20px 0;
+}
+
+.instructions {
+  text-align: center;
+  margin: 15px 30px;
+  border: 6px dashed;
+  padding: 0 40px 10px;
+  font-size: 18px;
+  font-weight:400;
+}
+
+.instructions > * {
+  margin: 5px;
+}
+
+.recipe-title {
+  margin: 0;
+}

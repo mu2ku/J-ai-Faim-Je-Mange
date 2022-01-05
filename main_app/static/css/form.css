@@ -38,3 +38,9 @@ td > textarea {
   align-self: flex-end;
   margin-right: 40px;
 }
+
+.add-recipe-title{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

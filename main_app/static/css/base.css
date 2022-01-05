@@ -1,7 +1,7 @@
 span {
-  color: red;
   text-align: center;
   font-size: 100px;
+  font-family: 'Waterfall', cursive;
 }
 
 hr {
@@ -33,7 +33,7 @@ nav a {
 }
 
 nav a:hover {
-  color: green;
+  color: #C17C74;
 }
 
 nav ul {
