@@ -2,11 +2,7 @@
 {% load static %}
 
 {% block head %}
-<link 
-  rel="stylesheet" 
-  type="text/css" 
-  href="{% static 'css/recipe-detail.css' %}"
-/>
+<link rel="stylesheet" type="text/css" href="{% static 'css/recipe-detail.css' %}"/>
 {% endblock %}
 
 {% block content %}
@@ -14,11 +10,14 @@
 {% if recipe %}
 <section class="recipe-container">
   <div class="recipe-details">
-    <img
-    style="height:300px;width:300px;"
-    src="{{ recipe.strMealThumb }}" 
-    alt="recipe image"
-    ></br>
+    <div class="recipe-header">
+      <img
+      style="height:300px;width:300px;"
+      src="{{ recipe.strMealThumb }}" 
+      alt="recipe image"
+      >
+      <span>{{recipe.strMeal}}<span>
+    </div>
       {% if recipe.users %}
         <form action="{% url 'remove_user' recipe.strMeal user.id %}" method="post">
           {% csrf_token %}
@@ -30,7 +29,6 @@
         <button class="button is-info">Add</button>
         </form>
       {% endif %}
-    <h1>{{recipe.strMeal}}</h1>
     <p>{{ recipe.strInstructions }}</p>
     <ul>
       <li>{{ recipe.strMeasure1 }} {{ recipe.strIngredient1 }}</li>
@@ -59,11 +57,14 @@
 {% else %}
 <section class="recipe-container">
   <div class="recipe-details">
-    <img
-    style="height:300px;width:300px;"
-    src="{{ dbrecipe.strThumb }}" 
-    alt="recipe image"
-    ></br>
+    <div class="recipe-header">
+      <img
+      style="height:300px;width:300px;"
+      src="{{ dbrecipe.strThumb }}" 
+      alt="recipe image"
+      >
+      <h1>{{dbrecipe.strMeal}}</h1>
+    </div>
     {% for entry in dbrecipe.users.all %}
       {% if entry == user %}
         <form action="{% url 'remove_user' dbrecipe.strMeal user.id %}" method="post">
@@ -77,7 +78,6 @@
         </form>
       {% endif %}
     {% endfor %}
-    <h1>{{dbrecipe.strMeal}}</h1>
     <p>{{ dbrecipe.strInstructions }}</p>
     <ul>
       <li>{{ dbrecipe.strMeasure1 }} {{ dbrecipe.strIngredient1 }}</li>

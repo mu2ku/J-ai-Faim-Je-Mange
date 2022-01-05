@@ -7,21 +7,21 @@
 
 {% block content %}
 
-<h1>Working</h1>
+<h1>My Recipes</h1>
 
 <section class="card-container">
   {% for recipe in recipes %}
     <div class="card">
       <a href="/recipes/details/{{ recipe.strMeal }}">
         <div class="card-content">
-          <div class="card-img-container">
+          <div class="card-img-container card-image">
             <img
-              style="width:200px;height:200px;"
+              style="width:30vh;height:25vh;"
               src="{{ recipe.strThumb }}" 
               alt="recipe image"
             >
           </div>
-          <h2 class="card-title">{{ recipe.strMeal }}</h2>
+          <h2 class="card-title card-header">{{ recipe.strMeal }}</h2>
         </div>
       </a>
     </div>

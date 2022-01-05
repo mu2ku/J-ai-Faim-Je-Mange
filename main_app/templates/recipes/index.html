@@ -43,14 +43,14 @@
     <div class="card">
       <a href="/recipes/details/{{ recipe.strMeal }}">
         <div class="card-content">
-          <div class="card-img-container">
+          <div class="card-img-container card-image">
             <img
-              style="width:200px;height:200px;"
+              style="width:30vh;height:25vh;"
               src="{{ recipe.strMealThumb }}" 
               alt="recipe image"
             >
           </div>
-          <h2 class="card-title">{{ recipe.strMeal }}</h2>
+          <h2 class="card-title card-header">{{ recipe.strMeal }}</h2>
         </div>
       </a>
     </div>
@@ -60,14 +60,14 @@
     <div class="card">
       <a href="/recipes/details/{{ dbrecipe.strMeal }}">
         <div class="card-content">
-          <div class="card-img-container">
+          <div class="card-img-container card-image">
             <img
-              style="width:200px;height:200px;"
+              style="width:30vh;height:25vh;"
               src="{{ dbrecipe.strThumb }}" 
               alt="recipe image"
             >
           </div>
-          <h2 class="card-title">{{ dbrecipe.strMeal }}</h2>
+          <h2 class="card-title card-header">{{ dbrecipe.strMeal }}</h2>
         </div>
       </a>
     </div>
