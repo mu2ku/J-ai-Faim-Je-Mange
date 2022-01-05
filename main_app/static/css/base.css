@@ -30,7 +30,7 @@ main {
   width: 100%;
 }
 
-nav a {
+nav a, #welcome {
   text-decoration: none;
   color: var(--text-color);
   font-weight: 600;
@@ -64,4 +64,9 @@ footer {
 
 .header-logo-container {
   margin: 10px;
+}
+
+#welcome {
+  position:relative;
+  right: 850px;
 }

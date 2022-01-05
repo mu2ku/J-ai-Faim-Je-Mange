@@ -27,6 +27,7 @@
     <nav>
       <ul>
         {% if user.is_authenticated %}
+          <li id="welcome">Welcome {{ user }}</li>
           <li><a href="{% url 'home' %}">Home</a></li>
           <li><a href="{% url 'profile' %}">My Profile</a></li>
           <li><a href="{% url 'recipes_index' %}">Search Recipes</a></li>
