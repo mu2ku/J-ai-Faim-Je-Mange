@@ -3,16 +3,20 @@ from django.views.generic.edit import CreateView
 from django.contrib.auth.views import LoginView
 from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
 from .models import Recipe
 import requests
 
 class Home(LoginView):
   template_name = 'home.html'
-  
+
+@login_required(login_url='/')
 def profile(request):
   recipes = Recipe.objects.filter(users=request.user)
   return render(request, 'profile.html', { 'recipes': recipes})
 
+@login_required(login_url='/')
 def recipes_index(request):
   response = requests.get('http://www.themealdb.com/api/json/v1/1/search.php?f=a')
   recipes = response.json()
@@ -22,6 +26,7 @@ def recipes_index(request):
       'dbrecipes': dbrecipes,
   })
 
+@login_required(login_url='/')
 def recipes_index_letter(request, letter):
   try:
     res = requests.get(f'http://www.themealdb.com/api/json/v1/1/search.php?f={letter}')
@@ -33,7 +38,8 @@ def recipes_index_letter(request, letter):
     })
   except:
     pass
-  
+
+@login_required(login_url='/') 
 def recipes_detail(request, recipe_name):
   try:
     user = request.user
@@ -52,7 +58,8 @@ def recipes_detail(request, recipe_name):
           'user': user
     })
     
-class RecipeCreate(CreateView):
+class RecipeCreate(LoginRequiredMixin, CreateView):
+  login_url = '/'
   model = Recipe
   fields = ['strMeal', 'strCategory', 'strArea', 'strInstructions', 'strThumb', 'strIngredient1', 'strIngredient2', 'strIngredient3', 'strIngredient4', 'strIngredient5', 'strIngredient6', 'strIngredient7', 'strIngredient8', 'strIngredient9', 'strIngredient10', 'strIngredient11', 'strIngredient12', 'strIngredient13', 'strIngredient14', 'strIngredient15','strIngredient16', 'strIngredient17', 'strIngredient18', 'strIngredient19', 'strIngredient20', 'strIngredient21', 'strIngredient22', 'strIngredient23', 'strIngredient24', 'strIngredient25', 'strIngredient26', 'strIngredient27', 'strIngredient28', 'strIngredient29', 'strIngredient30','strIngredient31', 'strIngredient32', 'strIngredient33', 'strIngredient34', 'strIngredient35', 'strIngredient36', 'strIngredient37', 'strIngredient38', 'strIngredient39', 'strIngredient40']
   success_url = '/recipes/'
@@ -71,6 +78,7 @@ def signup(request):
   context = {'form': form, 'error_message': error_message}
   return render(request, 'signup.html', context)
 
+@login_required(login_url='/')
 def assoc_user(request, recipe_name, user_id):
   try:
     Recipe.objects.get(strMeal=recipe_name).users.add(user_id)
@@ -86,7 +94,8 @@ def assoc_user(request, recipe_name, user_id):
     r.save()
     Recipe.objects.get(strMeal=recipe_name).users.add(user_id)
     return redirect(f'/recipes/details/{recipe_name}/')
-  
+
+@login_required(login_url='/')  
 def remove_user(request, recipe_name, user_id):
   Recipe.objects.get(strMeal=recipe_name).users.remove(user_id)
   return redirect(f'/recipes/details/{recipe_name}/')

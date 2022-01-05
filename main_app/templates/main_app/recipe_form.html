@@ -11,7 +11,7 @@
 <span class="add-recipe-title">Add a Recipe</span>
 <form action="" method="post" class="form-container">
   {% csrf_token %}
-  <button type="submit" class="btn submit button is-link is-light">Submit!</button>
+  <button type="submit" class="btn submit button is-link is-light is-outlined">Submit!</button>
   <table>
     {{ form.as_table }}
   </table>
