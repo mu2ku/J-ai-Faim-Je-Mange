@@ -68,7 +68,6 @@
       >
       <div class="title-and-btn">
         <span class="recipe-name">{{dbrecipe.strMeal}}</span>
-        {% for entry in dbrecipe.users.all %}
           <form action="{% url 'assoc_user' dbrecipe.strMeal user.id %}" method="post">
             {% csrf_token %}
           <button class="button is-link is-light is-outlined is-fullwidth">Add to Collection</button>
@@ -77,7 +76,6 @@
             {% csrf_token %}
             <button class="button is-danger is-light is-outlined is-fullwidth">Remove from Collection</button>
           </form>
-        {% endfor %}
       </div>
     </div>
     <div class="instructions">

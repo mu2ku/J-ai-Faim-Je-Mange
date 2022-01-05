@@ -7,8 +7,7 @@
 
 {% block content %}
 
-<div class="page-header">
-  <h1>Sign Up</h1>
+<span class="add-recipe-title">Sign Up</span>
 </div>
 {% if error_message %}
   <p class="red-text">{{ error_message }}</p>
@@ -18,7 +17,7 @@
   <table>
     {{ form.as_table }}
   </table>
-  <button type="submit" class="btn submit">Submit!</button>
+  <button type="submit" class="btn submit button is-link is-light is-outlined">Submit!</button>
 </form>
 
 {% endblock %}

@@ -37,11 +37,17 @@ td > textarea {
 .btn {
   align-self: center;
   width: 30%;
-  margin: 0 0 20px 0;
+  margin: 10px 0 20px 0;
 }
 
 .add-recipe-title{
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.helptext, li {
+  font-size: 30px;
+  text-align: left;
+  font-weight:600;
 }
